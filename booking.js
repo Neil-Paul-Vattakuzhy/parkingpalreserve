@@ -57,7 +57,10 @@ function updateslots(rcvddata) {
         if(zone=='c') slot=slot-10;
         slotid='but'+zone+slot
         if(rcvddata[i]=='g') document.getElementById(slotid).style.backgroundColor="green";
-        else document.getElementById(slotid).style.backgroundColor="red";
+        else{
+            document.getElementById(slotid).style.backgroundColor="red";
+            parkedcars(slot,zone)
+        }
     }
 }
 function makecaranimation(loc,area){
@@ -92,5 +95,23 @@ function managecar(slot,zone){
     targetparklocation.prepend(img)
 }
 
-
+function parkedcars(slot,zone){
+    parkarea=(zone=='j')?'park1':'park2'
+    console.log(parkarea)
+    makecaranimation(slot,parkarea)
+    let targetparklocation=document.getElementById(parkarea)
+    console.log(targetparklocation)
+    let img = document.createElement('img')
+    img.src='car2.png'
+    img.className='carup'
+    img.id=parkarea+'car'+slot
+    img.style.width='15vw'
+    img.style.height='15vw'
+    img.style.left=locations[slot].left
+    img.style.marginTop=locations[slot].margintop
+    img.style.transform= `rotate(${locations[slot].angle})`
+    img.style.zIndex=1
+    img.style.position='absolute'
+    targetparklocation.prepend(img)
+}
 
