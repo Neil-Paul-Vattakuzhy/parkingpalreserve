@@ -74,7 +74,7 @@ function managecar(slot,zone){
     img.style.height='15vw'
     img.style.left=locations[slot].left
     img.style.marginTop=locations[slot].margintop
-    img.style.transform.rotate=locations[slot].angle
+    img.style.transform= `rotate(${locations[slot].angle})`
     targetparklocation.prepend(img)
 }
 
