@@ -60,10 +60,21 @@ function updateslots(rcvddata) {
         else document.getElementById(slotid).style.backgroundColor="red";
     }
 }
+function makecaranimation(loc,area){
+    let car_animation=document.createElement('style');
+    let movement=document.createTextNode(`@keyframes comecar{
+        0%{left: 100vw;transform: rotate(90deg);margin-top: 23.5%;}
+        70%{left: ${locations[loc].left};transform: rotate(90deg);}
+        80%{transform: rotate(${locations[loc].angle});margin-top: 23.5%;}
+    }`);
+    car_animation.appendChild(movement);
+    document.getElementById(area).appendChild(car_animation)
+}
  
 function managecar(slot,zone){
     parkarea=(zone=='j')?'park1':'park2'
     console.log(parkarea)
+    makecaranimation(slot,parkarea)
     let targetparklocation=document.getElementById(parkarea)
     console.log(targetparklocation)
     let img = document.createElement('img')
@@ -75,6 +86,9 @@ function managecar(slot,zone){
     img.style.left=locations[slot].left
     img.style.marginTop=locations[slot].margintop
     img.style.transform= `rotate(${locations[slot].angle})`
+    img.style.zIndex=1
+    img.style.position='absolute'
+    img.style.animation='comecar 2s'
     targetparklocation.prepend(img)
 }
 

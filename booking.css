@@ -96,27 +96,3 @@
     height: 100%;
     background-color: white;
 }
-
-
-
-
-
-
-
-/* =============================================================== */
-
-.parkingzone .carup{
-    /* width: 15vw;
-    height: 15vw; */
-    position: absolute;
-    z-index: 1;
-    /* left: 80vw;
-    margin-top: 40%;
-    transform: rotate(0deg); */
-    animation: comecar 2s ;
-}
-@keyframes comecar{
-    0%{left: 100vw;transform: rotate(90deg);margin-top: 20%;}
-    70%{left: 4vw;transform: rotate(90deg);margin-top: 20%;}
-    80%{left: 4vw;transform: rotate(180deg);margin-top: 20%;}
-}
