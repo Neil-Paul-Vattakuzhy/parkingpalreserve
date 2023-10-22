@@ -1,4 +1,4 @@
-
+let socket;
 const locations={
     1 : {left : '4vw',margintop : '7%',angle : '180deg'},
     2 : {left : '23vw',margintop : '7%',angle : '180deg'},
@@ -13,7 +13,7 @@ const locations={
 }
 
 try {
-    const socket = new WebSocket("ws://192.168.1.2:81");
+    socket = new WebSocket("ws://192.168.1.2:81");
     socket.onopen = () => {
         console.log("WebSocket connection established");
         
@@ -28,12 +28,13 @@ try {
     function managepark(slot,zone){
         slotst=(slot!=10)?"0":""
         slotst=slotst+slot
-        park=""+zone+slotst
+        park=""+zone+slotst+'r'
         console.log(park)
         socket.send(park)
         slotid="but"+zone+slot
         console.log(slotid)
         document.getElementById(slotid).style.backgroundColor="red"
+        document.getElementById(slotid).disabled = true
         managecar(slot,zone)
     }
     
@@ -88,6 +89,13 @@ function managecar(slot,zone){
     img.style.zIndex=1
     img.style.position='absolute'
     img.style.animation='comecar 2s'
+    img.addEventListener('click',()=>{
+        document.getElementById(parkarea+'car'+slot).remove()
+        document.getElementById('but'+zone+slot).style.backgroundColor='green'
+        slotst=(slot!=10)?"0":""
+        slotst=slotst+slot
+        socket.send(zone+slotst+'g')
+    })
     targetparklocation.prepend(img)
 }
 
@@ -108,6 +116,13 @@ function parkedcars(slot,zone){
     img.style.transform= `rotate(${locations[slot].angle})`
     img.style.zIndex=1
     img.style.position='absolute'
+    img.addEventListener('click',()=>{
+        document.getElementById(parkarea+'car'+slot).remove()
+        document.getElementById('but'+zone+slot).style.backgroundColor='green'
+        slotst=(slot!=10)?"0":""
+        slotst=slotst+slot
+        socket.send(zone+slotst+'g')
+    })
     targetparklocation.prepend(img)
 }
 
