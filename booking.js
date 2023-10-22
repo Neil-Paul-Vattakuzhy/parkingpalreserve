@@ -92,6 +92,8 @@ function managecar(slot,zone){
     img.addEventListener('click',()=>{
         document.getElementById(parkarea+'car'+slot).remove()
         document.getElementById('but'+zone+slot).style.backgroundColor='green'
+        document.getElementById('but'+zone+slot).disabled=false
+
         slotst=(slot!=10)?"0":""
         slotst=slotst+slot
         socket.send(zone+slotst+'g')
