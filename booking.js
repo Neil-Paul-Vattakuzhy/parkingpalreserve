@@ -5,11 +5,11 @@ const locations={
     3 : {left : '42vw',margintop : '7%',angle : '180deg'},
     4 : {left : '61vw',margintop : '7%',angle : '180deg'},
     5 : {left : '80vw',margintop : '7%',angle : '180deg'},
-    6 : {left : '4vw',margintop : '40%',angle : '0deg'},
-    7 : {left : '23vw',margintop : '40%',angle : '0deg'},
-    8 : {left : '42vw',margintop : '40%',angle : '0deg'},
-    9 : {left : '61vw',margintop : '40%',angle : '0deg'},
-    10 : {left : '80vw',margintop : '40%',angle : '0deg'}
+    6 : {left : '4vw',margintop : '39.90vw',angle : '0deg'},
+    7 : {left : '23vw',margintop : '39.90vw',angle : '0deg'},
+    8 : {left : '42vw',margintop : '39.90vw',angle : '0deg'},
+    9 : {left : '61vw',margintop : '39.90vw',angle : '0deg'},
+    10 : {left : '80vw',margintop : '39.90vw',angle : '0deg'}
 }
 
 try {
@@ -43,12 +43,6 @@ catch(err) {
 }
 
 
-
-document.getElementById("send").addEventListener("click", () => {
-  socket.send(document.getElementById("message").value);
-  console.log("message sent");
-});
-
 function updateslots(rcvddata) {
     console.log(rcvddata[0])
     for(i=0;i<20;i++){
@@ -64,6 +58,8 @@ function updateslots(rcvddata) {
     }
 }
 function makecaranimation(loc,area){
+    console.log(loc,area)
+    console.log(locations[loc].left)
     let car_animation=document.createElement('style');
     let movement=document.createTextNode(`@keyframes comecar{
         0%{left: 100vw;transform: rotate(90deg);margin-top: 23.5%;}
